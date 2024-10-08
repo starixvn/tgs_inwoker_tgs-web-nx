@@ -2,8 +2,10 @@ import Icon from "@/components/project/Icon";
 import { LabelContainer } from "@/components/styled-component/ProfileForms";
 import { OrangeGradientButton } from "@/components/UI/Button";
 import { theme } from "@/theme";
+import { media } from "@/theme/breakpoints";
 import { ProfileItem } from "@tgs-web-nx/core/hooks";
-import styled from "styled-components";
+import { i18n } from "@tgs-web-nx/utils";
+import styled, { css } from "styled-components";
 
 export const ProfileItemContainer = styled.div`
   width: 100%;
@@ -56,6 +58,17 @@ export const ItemInfo = styled.div<StatusInfo>`
   color: ${({ isVerified, theme }: StatusInfo) => {
     return isVerified ? theme.text : theme.placeHolderText;
    }};
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: flex-end;
+  gap: .4rem;
+ 
+  ${media.sm} {
+    gap: .8rem;
+    align-items: center;
+    flex-direction: row;
+  }
 `;
 
 export const ItemContainer = styled.div`
@@ -71,6 +84,44 @@ export const ItemContainer = styled.div`
   min-height: 4.8rem;
 `;
 
+const LabelStatusBase = styled.div`
+   font-size: 1.3rem;
+   padding: .4rem .6rem;
+   border-radius: .8rem;
+   font-weight: 600;
+   line-height: 2rem;
+   letter-spacing: 0.26px;
+`;
+ 
+type LabelStatusProps = {
+  status: string,
+  theme: typeof theme
+};
+export const LabelStatus = styled(LabelStatusBase)<LabelStatusProps>`
+  ${({ status, theme }: LabelStatusProps) => {    
+    switch(status) {
+      case "yes": 
+        return css`
+          background-color: ${theme.verifiedLabelBackground};
+          color: ${theme.verifiedLabelColor};         
+          }
+        `;
+      case "verifying": 
+        return css`
+        background-color: ${theme.verifyingLabelBackground};
+        color: ${theme.verifyingLabelColor};         
+        }
+      `;
+      case "rejected": 
+        return css`
+        background-color: ${theme.rejectedLabelBackground};
+        color: ${theme.rejectedLabelColor};         
+        }
+      `;
+    }
+  }}
+`;
+
 type ProfileItemProps = {
   profileItem?: ProfileItem;
   handleClick: (newProfileItem: ProfileItem) => void;
@@ -79,7 +130,7 @@ type ProfileItemProps = {
 const ProfileRowInMobile = ({ profileItem, handleClick }: ProfileItemProps) => {
   if (!profileItem) return null;
 
-  const { label, status } = profileItem;
+  const { label, status, currentFormStatus } = profileItem;
   if(profileItem.key === "changepassword") {
     return (
       <ItemContainer>
@@ -104,7 +155,10 @@ const ProfileRowInMobile = ({ profileItem, handleClick }: ProfileItemProps) => {
         <ItemContainer >
           <LabelContainer>{label}</LabelContainer>
           <FormWrapperExtend>
-            <ItemInfo isVerified={profileItem.isVerified || false}>{profileItem.status}</ItemInfo>
+            <ItemInfo isVerified={profileItem.isVerified || false}>
+            <div>{profileItem.status}</div>
+            {(!!currentFormStatus) && <LabelStatus status={currentFormStatus}>{i18n.t("verified." + currentFormStatus)}</LabelStatus>}
+            </ItemInfo>
             {/* <FormControl variant="outlined" >
               <TextField fullWidth disabled={true} value={profileItem.status}/>
             </FormControl> */}

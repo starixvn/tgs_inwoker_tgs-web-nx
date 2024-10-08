@@ -12,6 +12,7 @@ export interface ProfileItem {
   status: string;
   routePath: string;
   buttonText: string;
+  currentFormStatus?: any;
 }
 
 export function useProfileMenu() {
@@ -24,10 +25,10 @@ export function useProfileMenu() {
 
     let status = "";
 
-    if (currentFormStatus === 0 && !hasSubmitted) {
-      //api沒給表單id ，表示可以上傳
-      return (status = "no");
-    }
+    // if (currentFormStatus === 0 && !hasSubmitted) {
+    //   //api沒給表單id ，表示可以上傳
+    //   return (status = "no");
+    // }
     if ((currentFormStatus === 1 && hasSubmitted) || currentFormStatus === 1) {
       return (status = "yes");
     }
@@ -50,17 +51,10 @@ export function useProfileMenu() {
         key: "name",
         label: i18n.t("common.realName"),
         isVerified: !!account.info.member_name,
-        status: account.info.member_name
-          ? i18n.t(
-              `${account.info.member_name} ${
-                config.features.ShowVerificationStatus
-                  ? `(` + i18n.t("verified." + getStatus()) + `)`
-                  : ""
-              }`,
-            )
-          : i18n.t("profile.notSet"),
+        status: account.info.member_name ? account.info.member_name : i18n.t("profile.notSet"),
         routePath: "/profile/name",
         buttonText: account.info.member_name ? i18n.t("profile.edit") : i18n.t("profile.nowVerify"),
+        currentFormStatus: config.features.ShowVerificationStatus ? getStatus() : "",
       },
       phone: {
         key: "phone",

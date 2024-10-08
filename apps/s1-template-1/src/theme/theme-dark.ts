@@ -400,4 +400,12 @@ export const dark = {
   playerNameColor: "#fff",
   walletInfoColor: "#B3CDF8",
   borderAvartar: "rgba(255, 255, 255, 0.20)",
+
+  // Status Verification Real Name
+  verifiedLabelBackground: "rgba(12, 157, 27, 0.20)",
+  verifiedLabelColor: "#17A600",
+  verifyingLabelBackground: "rgba(88, 185, 255, 0.20)",
+  verifyingLabelColor: "#2194FF",
+  rejectedLabelBackground: "rgba(255, 39, 15, 0.20)",
+  rejectedLabelColor: "#FF4F38",
 };

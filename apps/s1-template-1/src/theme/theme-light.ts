@@ -401,4 +401,12 @@ export const light = {
   playerNameColor: "#1C2532",
   walletInfoColor: "#1C2532",
   borderAvartar: "rgba(0, 0, 0, 0.20)",
+
+  // Status Verification Real Name
+  verifiedLabelBackground: "rgba(12, 157, 27, 0.20)",
+  verifiedLabelColor: "#17A600",
+  verifyingLabelBackground: "rgba(88, 185, 255, 0.20)",
+  verifyingLabelColor: "#2194FF",
+  rejectedLabelBackground: "rgba(255, 39, 15, 0.20)",
+  rejectedLabelColor: "#FF4F38",
 };

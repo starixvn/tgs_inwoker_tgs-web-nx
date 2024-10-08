@@ -82,5 +82,6 @@
       }
     }
   },
-  "isShowChannelCode": true
+  "isShowChannelCode": true,
+  "ShowVerificationStatus": true
 }

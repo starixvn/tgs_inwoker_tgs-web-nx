@@ -1,23 +1,16 @@
 import { LabelContainer } from "@/components/styled-component/ProfileForms";
 import { GreenGradientButton, OrangeGradientButton } from "@/components/UI/Button";
 import { ProfileItem } from "@tgs-web-nx/core/hooks";
+import { i18n } from "@tgs-web-nx/utils";
 import styled from "styled-components";
-import { FormWrapperExtend, ItemContainer, ItemInfo, ProfileItemContainer } from "./ProfileRowInMobile";
-
-
-
-
-const ProfileStatus = styled.div`
-  color: ${({ theme }) => theme.text};
-  font-size: 0.937rem;
-  font-weight: 400;
-`;
-
+import { FormWrapperExtend, ItemContainer, ItemInfo, LabelStatus, ProfileItemContainer } from "./ProfileRowInMobile";
 
 const ItemInfoDesktop = styled(ItemInfo)`
   font-size: 1.4rem;
   font-weight: bold;
 `;
+
+
 
 type Props = {
   profileItem?: ProfileItem;
@@ -27,7 +20,7 @@ type Props = {
 const ProfileRowInDesktop = ({ profileItem, handleClick }: Props) => {
   if (!profileItem) return null;
 
-  const { label, status, buttonText, isVerified } = profileItem;
+  const { label, status, buttonText, isVerified, currentFormStatus } = profileItem;
   if(profileItem.key === "changepassword") {
     return (
       <ItemContainer>
@@ -49,7 +42,8 @@ const ProfileRowInDesktop = ({ profileItem, handleClick }: Props) => {
           </LabelContainer>
           <FormWrapperExtend style={{gap: "2.4rem", width: "calc(100% - 18rem)"}}>
             <ItemInfoDesktop isVerified={isVerified || false}>
-              {status}
+              <div>{status}</div>
+              {(!!currentFormStatus) && <LabelStatus status={currentFormStatus}>{i18n.t("verified." + currentFormStatus)}</LabelStatus>}
             </ItemInfoDesktop>
             {isVerified ? 
             <OrangeGradientButton style={{width: "11.6rem"}}  onClick={() => {
