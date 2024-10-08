@@ -350,7 +350,7 @@ class Main extends Component {
                   })}
                 </ChannelExtend>
               )
-              
+
             }
 
 
@@ -365,13 +365,13 @@ class Main extends Component {
           ) {
             if (methodCode("THIRDPARTY")) {
               return (
-                <ItemContainer>                  
+                <ItemContainer>
                   <QRCodeImg src={channelExtend.qrCode} style={{ marginBottom: "10px" }} />
                 </ItemContainer>
               );
             } else {
               return (
-                <ItemContainer>                 
+                <ItemContainer>
                   <AccountInfo>{generateDisplayContent(channelExtend)}</AccountInfo>
                 </ItemContainer>
               );
@@ -559,13 +559,13 @@ class Main extends Component {
             />
           </FormControl>
 
-          {transferFee === 0 ? null : 
+          {transferFee === 0 ? null :
             <AmountHint>
               <FeeSpot>
                 {i18n.t("fees.deposit")}: <span>{`${transferFee} %`}</span>
               </FeeSpot>
           </AmountHint>}
-          
+
         </ItemContainer>
 
         {paymentCode("umpay") && <Remark>{i18n.t("deposit.ppRemark")}</Remark>}
@@ -732,20 +732,21 @@ class Main extends Component {
 
         {/*提交*/}
         <ItemContainer>
-
           <GreenGradientButton
             onClick={this.props.handleDepositClick}
             variant={"contained"}
             fullWidth
             disabled={(() => {
               const transferlimit = channel.transferlimit;
-
+              console.log("DEPOSIT AMOUNT ", this.props.amount);
+              const parsedAmount = Common
+                .parseThousandSeparatedStringNumberToFloat(this.props.amount);
               return (
                 !!this.props.disabled ||
                 (paymentCode("manual") && this.props.name === "") ||
                 (paymentCode("manual") && this.props.account === "") ||
-                this.props.amount < transferlimit.from ||
-                this.props.amount > transferlimit.to ||
+                parsedAmount < transferlimit.from ||
+                parsedAmount > transferlimit.to ||
                 this.props.amount === "" ||
                 (this.props.files === null &&
                   config.features.Deposit_UploadRequired &&

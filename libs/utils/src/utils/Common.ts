@@ -172,7 +172,7 @@ function isWebview() {
  */
 function roundUpToTwoDecimals(amount: number) {
   //無條件進位到小數點後兩位
-  let rounded = Math.ceil(amount * 100) / 100;
+  const rounded = Math.ceil(amount * 100) / 100;
   return formatNumberWithCommas(
     // 如果數字是整數，返回整數部分，否則返回保留兩位小數的字符串
     rounded % 1 === 0 ? rounded.toString() : rounded.toFixed(2).replace(/\.?0+$/, ""),
@@ -195,6 +195,10 @@ function compareISODatetimeString(dateAString: string, dateBString: string) {
   return dateB.getTime() - dateA.getTime();
 }
 
+function parseThousandSeparatedStringNumberToFloat(input: string) {
+  return parseInt(input.replace(/,/g, ""));
+}
+
 const Common = {
   compareISODatetimeString,
   formatNumberWithCommas,
@@ -210,7 +214,8 @@ const Common = {
   formatCurrency,
   isWebview,
   roundUpToTwoDecimals,
-  formatWithThousandSeparator
+  formatWithThousandSeparator,
+  parseThousandSeparatedStringNumberToFloat
 };
 
 export default Common;
