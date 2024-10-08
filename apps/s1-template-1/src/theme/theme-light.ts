@@ -84,16 +84,18 @@ export const light = {
   betSlipGameAreaBackground: "rgba(0, 0, 0, 0.10)",
   betSlipGameAreaBackgroundHover: "rgba(0, 0, 0, 0.15)",
   betSlipCloseIconColor: "#C2C2C2",
-  betSlipCloseIconColorHover: "#C2C2C2",
+  betSlipCloseIconColorHover: "#B3B0B0",
   betSlipBetTime: "#55657E",
   betSlipAvatarBorder: "0.2rem solid rgba(0, 0, 0, 0.20)",
 
   // AuthForm
-  authTabsBackground: "#fff",
-  authTabsShadow: "0px 0px 4px 0px rgba(0, 0, 0, 0.20)",
-  authActiveTabBackground: "linear-gradient(276deg, #b3cd0a 2.32%, #7f9303 99.1%)",
+  authTabsBackground: "#EDEDED",
+  authTabsShadow: "none",
+  authActiveTabBackground: "linear-gradient(276deg, #B3CD0A 2.32%, #7F9303 99.1%)",
   authActiveTabColor: "#fff",
-  authTabColor: "#6E7E92",
+  authTabColor: "#1C2532",
+  authOrTextColor: "#55657E",
+  authSocialIconBackground: "#EDEDED",
 
   // Footer
   footerBackground: "#19212C",
@@ -313,7 +315,7 @@ export const light = {
   popupBoxShadow: "0px 0px 5px 0px rgba(0, 0, 0, 0.50)",
   popupBorderRadius: "1.2rem",
   popupCloseButtonBgColor: "#C2C2C2",
-  popupCloseButtonHoverBgColor: "#C2C2C2",
+  popupCloseButtonHoverBgColor: "#B3B0B0",
 
   // Calendar
   calendarBackground: "#1C2532",

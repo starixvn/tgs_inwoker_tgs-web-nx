@@ -94,6 +94,8 @@ export const dark = {
   authActiveTabBackground: "linear-gradient(276deg, #b3cd0a 2.32%, #7f9303 99.1%)",
   authActiveTabColor: "#fff",
   authTabColor: "#55657e",
+  authOrTextColor: "#55657e",
+  authSocialIconBackground: "#2a3646",
 
   // Footer
   footerBackground: "#19212C",

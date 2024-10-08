@@ -122,6 +122,11 @@ export const SocialIcons = styled.div`
   display: flex;
   gap: 1.6rem;
   margin-top: 0.4rem;
+
+  .icon {
+    background-color: #2a3646;
+    border-radius: 1rem;
+  }
 `;
 
 export const LinkContent = styled(GroupContent)`

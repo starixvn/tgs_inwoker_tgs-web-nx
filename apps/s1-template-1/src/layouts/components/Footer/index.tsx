@@ -3,7 +3,18 @@ import { i18n } from "@tgs-web-nx/utils";
 import { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 
-import { FooterBottom, FooterContainer, FooterGroup, FooterWrapper, GroupContent, GroupTitle, Link, LinkContent, PaymentMethod, SocialIcons } from "./style";
+import {
+  FooterBottom,
+  FooterContainer,
+  FooterGroup,
+  FooterWrapper,
+  GroupContent,
+  GroupTitle,
+  Link,
+  LinkContent,
+  PaymentMethod,
+  SocialIcons,
+} from "./style";
 
 const Footer = () => {
   const history = useHistory();
@@ -87,7 +98,14 @@ const Footer = () => {
             <SocialIcons>
               {SocialIconList.map((social, index) => {
                 return (
-                  <img key={index} src={social.url} width={36} height={36} alt={social.name} />
+                  <img
+                    className="icon"
+                    key={index}
+                    src={social.url}
+                    width={36}
+                    height={36}
+                    alt={social.name}
+                  />
                 );
               })}
             </SocialIcons>

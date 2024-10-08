@@ -12,25 +12,7 @@ import React from "react";
 import { Img } from "react-image";
 import styled from "styled-components";
 
-import {
-  Avatar,
-  BetArea,
-  BetID,
-  BetInfo,
-  BetInfoText,
-  BetInfoValue,
-  BetTime,
-  Divider,
-  Game,
-  GameIcon,
-  GameInfo,
-  PlayerArea,
-  PlayerInfo,
-  PlayNow,
-  ProfitText,
-  ProfitValue,
-  Title,
-} from "./style";
+import { Avatar, BetArea, BetID, BetInfo, BetInfoText, BetInfoValue, BetTime, Divider, Game, GameIcon, GameInfo, PlayerArea, PlayerInfo, PlayNow, ProfitText, ProfitValue, Title } from "./style";
 
 const StyledDialog = styled(MuiDialog)`
   position: relative;
