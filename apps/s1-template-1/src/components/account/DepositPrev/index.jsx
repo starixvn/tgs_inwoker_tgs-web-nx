@@ -515,7 +515,8 @@ class DepositPrev extends Component {
       selectedChannelIndex: 0,
       selectedPaymentIndex: value,
       name: "",
-      account: ""
+      account: "",
+      amount: ""
     });
   };
 

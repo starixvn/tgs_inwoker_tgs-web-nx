@@ -1,4 +1,5 @@
 import {
+  GetAgentReportResDto,
   GetBalanceChangesResDto,
   GetDepositDetailsResDto,
   GetDepositStatusResDto,
@@ -7,7 +8,6 @@ import {
   GetTransferReportResDto,
   GetWithdrawalDetailsResDto,
   GetWithdrawalStatusResDto,
-  GetAgentReportResDto,
 } from "@tgs-web-nx/types";
 import { ApiService } from "../api-services/services/ApiService";
 
@@ -56,7 +56,7 @@ function GetWithdrawalDetails(
   order: string,
 ) {
   return ApiService.get(
-    `withdraw/player/list?status=${status}&begincreate=${from}&endcreate=${to}&Page=${page}&Rows=${rows}&IsDesc=${desc}&SortBy=${sort}&ShowAll=${all}&OrderBy=${order}`,
+    `withdraw/player/list?status=${status}&begincreate=${from}&endcreate=${to}&Page=${page}&Rows=${rows}&Desc=${desc}&Sort=${sort}&ShowAll=${all}&OrderBy=${order}`,
   ) as unknown as Promise<GetWithdrawalDetailsResDto>;
 }
 
@@ -72,7 +72,7 @@ function GetDepositDetails(
   order: string,
 ) {
   return ApiService.get(
-    `deposit/player/list?status=${status}&begincreate=${from}&endcreate=${to}&Page=${page}&Rows=${rows}&IsDesc=${desc}&SortBy=${sort}&ShowAll=${all}&OrderBy=${order}`,
+    `deposit/player/list?status=${status}&begincreate=${from}&endcreate=${to}&Page=${page}&Rows=${rows}&Desc=${desc}&Sort=${sort}&ShowAll=${all}&OrderBy=${order}`,
   ) as unknown as Promise<GetDepositDetailsResDto>;
 }
 

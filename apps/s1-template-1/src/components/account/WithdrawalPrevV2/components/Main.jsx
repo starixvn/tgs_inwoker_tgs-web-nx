@@ -25,6 +25,7 @@ const Main = (props) => {
   }, [props.cardList.length, props.defaultCard]);
 
   const handleSelectCardChange = useCallback((index) => {
+    setAmount("");
     setSelectedCardIndex(index);
   }, []);
 
