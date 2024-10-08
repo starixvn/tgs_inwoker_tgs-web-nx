@@ -17,6 +17,8 @@ window.envConfig = {
   affiliateId: "",
   brandTitle: "nsDemoUUS",
   agentAdminUrl: null,
+  i18nLoadPath: "https://assets.nexentgame.com/translations/{{lng}}.json",
+  i18nAddPath: "https://assets.nexentgame.com/translations/{{lng}}",
   offeredGameTypes:
     "slots,live-casino,sports,fishing,table-game,lottery,cock-fighting,instant-play",
   encryptPublicKey:
