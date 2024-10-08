@@ -1,3 +1,4 @@
+import { NoImage } from "@/components/UI/CustomizeIcon";
 import { media } from "@tgs-web-nx/constants";
 import styled from "styled-components";
 
@@ -153,7 +154,7 @@ export const ProviderName = styled.div`
   font-size: 1rem;
   font-weight: 700;
   text-transform: uppercase;
-  color: ${({ theme }) => theme.gameCardGameNameColor};
+  color: ${({ theme }) => theme.gameCardProviderNameColor};
 `;
 
 export const NoGameIconWrapper = styled.div`
@@ -162,12 +163,15 @@ export const NoGameIconWrapper = styled.div`
   flex-direction: column;
   align-items: center;
   gap: 1rem;
+
+  ${GameName} {
+    color: ${({ theme }) => theme.gameCardNoImageGameName};
+  }
 `;
 
-export const NoImage = styled.img`
-  width: 6.8rem;
-  height: 6.8rem;
+export const CustomNoImage = styled(NoImage)`
   transform: scale(0.6);
+  color: ${({ theme }) => theme.gameCardNoImage};
 
   ${media.sm} {
     transform: scale(0.8);
@@ -191,7 +195,7 @@ export const SpinnerBox = styled.div`
 export const Loading = styled.div`
   width: 5rem;
   height: 5rem;
-  border: 0.3rem solid #93acd3;
+  border: 0.3rem solid ${({ theme }) => theme.gameCardLoadingIconColor};
   border-top: 0.3rem solid transparent;
   border-radius: 50%;
   animation: spin 0.8s linear 0s infinite;

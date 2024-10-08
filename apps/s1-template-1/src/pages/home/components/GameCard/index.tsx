@@ -1,16 +1,22 @@
 import AppearSensor from "@/components/project/AppearSensor";
 import { useAccountStore } from "@tgs-web-nx/core";
 import { useAuth, useHomeGameContext } from "@tgs-web-nx/core/features";
+import { useJoinGame } from "@tgs-web-nx/core/hooks";
 import { GameItem, GameStatus } from "@tgs-web-nx/types";
-import { useInitApp, useJoinGame } from "@tgs-web-nx/core/hooks";
 import { i18n } from "@tgs-web-nx/utils";
+import { useEffect } from "react";
 import { Img } from "react-image";
-import Loading from "@/components/UI/Loading";
 
 import PlayIcon from "../PlayIcon";
 import { LoadingIcon, NoGameIcon } from "./icons";
-import { CardHoverBg, GameCardBg, GameCardContent, GameName, GameStatusBg, ProviderName } from "./style";
-import { useEffect } from "react";
+import {
+  CardHoverBg,
+  GameCardBg,
+  GameCardContent,
+  GameName,
+  GameStatusBg,
+  ProviderName,
+} from "./style";
 
 type GameCardProps = {
   gameItem: GameItem;
@@ -22,7 +28,7 @@ const GameCard = ({ gameItem, imageUrl, isHideProviderName }: GameCardProps) => 
   const { account } = useAccountStore();
   const { goToLogin } = useAuth();
   const { isLoading, handleJoinGame } = useJoinGame();
-  const {handleLoading} = useHomeGameContext();
+  const { handleLoading } = useHomeGameContext();
   const isLogin = !!account.token;
   const { id, gpcode, name, gpname, gamestatus } = gameItem;
 
@@ -58,14 +64,14 @@ const GameCard = ({ gameItem, imageUrl, isHideProviderName }: GameCardProps) => 
     if (!isLogin) {
       goToLogin();
     } else {
-       handleJoinGame(id, gpcode);
+      handleJoinGame(id, gpcode);
     }
   };
 
   useEffect(() => {
     if (isLoading) {
       handleLoading(true);
-    }  else {
+    } else {
       handleLoading(false);
     }
   }, [isLoading]);

@@ -16,7 +16,8 @@ const LoadingContainer = styled.div<LoadingContainer>`
   transition:
     opacity 0.2s linear,
     height 0.02s linear 0.2s;
-  background-color: rgba(0, 0, 0, ${({ $opacity }: LoadingContainer) => $opacity});
+  --loadingOpacity: ${({ $opacity }: LoadingContainer) => $opacity};
+  background-color: ${({ theme }) => theme.loadingContainerBackground};
   ${({ $open }) => ($open ? "opacity:1;height: 100%;" : "display: none")};
   z-index: 9999;
 `;
@@ -31,11 +32,7 @@ const Inner = styled.div`
   left: 50%;
   transform: translate(-50%, -50%);
 `;
-const LogoImg = styled.img`
-  margin: 0 auto;
-  display: block;
-  width: 250px;
-`;
+
 type Props = {
   show: boolean;
   opacity?: number;

@@ -53,7 +53,7 @@ const StyledSelect = styled(MuiSelect)`
     box-shadow: ${({ theme }) => theme.languageButtonActiveShadow};
   }
 
-  &:after {
+  &:before {
     content: "";
     position: absolute;
     right: 2.4rem;
@@ -73,6 +73,7 @@ const StyledSelect = styled(MuiSelect)`
     align-items: center;
     height: 100% !important;
     padding: 0 !important;
+    z-index: 2;
   }
 
   ${FlagContainer} {
@@ -90,6 +91,7 @@ const StyledSelect = styled(MuiSelect)`
   .MuiSvgIcon-root {
     position: absolute;
     right: 0.8rem;
+    z-index: 1;
 
     color: ${({ theme }) => theme.dropDownIconColor};
   }

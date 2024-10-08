@@ -1,4 +1,4 @@
-import { GameName, NoImage, SpinnerBox } from "@/pages/home/components/GameCard/style";
+import { CustomNoImage, GameName, SpinnerBox } from "@/pages/home/components/GameCard/style";
 import { PlayButton } from "@/pages/home/components/PlayIcon";
 import { media } from "@tgs-web-nx/constants";
 import styled from "styled-components";
@@ -65,7 +65,7 @@ export const RecentBigWinsSlide = styled.div`
     margin-right: 0.8rem;
   }
 
-  ${SpinnerBox},${PlayButton}, ${NoImage} {
+  ${SpinnerBox},${PlayButton}, ${CustomNoImage} {
     transform: scale(0.5);
   }
 

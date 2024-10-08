@@ -24,5 +24,5 @@ window.envConfig = {
   i18nAddPath: "https://assets.nexentgame.com/translations/{{lng}}",
   encryptPublicKey:
     "-----BEGIN PUBLIC KEY-----MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDX8zEHyerJpU5UWOIxy4wG6GywAZfHEPPAcxYZ8I4ncDn7aD2TW92tNLbdVQbikRcsHTCw+6yOY5f+rvXEwLECp0oLyDnv3zr+49lQqZ1N8mwC9UmSvxMk911P+RlQkHJVeZftT3zIB65jbnD34Dh5BGHKK9x8l1aD3mbvGiBZFQIDAQAB-----END PUBLIC KEY-----",
-  theme: "dark", // light
+  theme: "dark", // light/dark
 };

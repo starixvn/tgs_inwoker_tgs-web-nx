@@ -152,8 +152,8 @@ export const GlobalStyles = createGlobalStyle`
   .p-multiselect-items
   .p-multiselect-item:not(.p-highlight):not(.p-disabled).p-focus,
 .p-dropdown-panel .p-dropdown-items .p-dropdown-item:not(.p-highlight):not(.p-disabled).p-focus {
-  color: ${({ theme }) => theme.multipleSelectItemColorHighlight};
-  background: transparent;
+  color: ${({ theme }) => theme.multipleSelectItemColorHover};
+  background: ${({ theme }) => theme.multipleSelectItemBackgroundHover};
 }
 
 .p-dropdown-panel {

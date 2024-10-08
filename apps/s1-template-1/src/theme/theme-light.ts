@@ -174,6 +174,8 @@ export const light = {
   pageContainerBackground: "#fff",
   paddingBottomContent: "6rem",
 
+  loadingContainerBackground: "rgba(255, 255, 255, var(--loadingOpacity))",
+
   // Tab
   tabBackground: "radial-gradient(60.48% 104.17% at 52.02% 9.72%, #CCDAFF 0%, #90BDFF 100%)",
   tabActiveBackground: "radial-gradient(100% 100% at 50% 0%, #DCFFC0 0%, #B5F575 100%)",
@@ -209,12 +211,6 @@ export const light = {
   disabledSlideNextButtonColor: "#7FAAE4",
 
   providerItemBackground: "#1c2532",
-
-  gameStatusBackground: "rgba(0, 0, 0, 0.25)",
-  maintenanceLabelBackground: "#0099CA",
-  maintenanceLabelColor: "#fff",
-  testingLabelBackground: "#b0003f",
-  testingLabelColor: "#fff",
 
   desktopContainerPaddingTop: "1.6rem 0 4.8rem",
   desktopContainerPaddingTopMd: "1.6rem",
@@ -258,10 +254,19 @@ export const light = {
   gameAreaMargin: "-0.8rem",
   gameCardBackground: "linear-gradient(149deg, #CCC 2%, #EDEDED 49.83%, #BEBCBC 97.67%)",
   gameCardGameNameColor: "#fff",
+  gameCardProviderNameColor: "#fff",
   gameCardBackgroundHover: "rgba(0, 0, 0, 0.6)",
   gameCardAspectRatio: "156 / 210",
   gameCardBorder: "none",
   gameCardShadow: "0px 0px 5px 0px rgba(30, 31, 34, 0.7)",
+  gameStatusBackground: "rgba(0, 0, 0, 0.25)",
+  maintenanceLabelBackground: "#0099CA",
+  maintenanceLabelColor: "#fff",
+  testingLabelBackground: "#b0003f",
+  testingLabelColor: "#fff",
+  gameCardNoImage: "#1F3859",
+  gameCardNoImageGameName: "#1C2532",
+  gameCardLoadingIconColor: "#0E6BFC",
 
   // Load more button
   loadingMoreButtonBackground: "#2A3038",
@@ -375,6 +380,8 @@ export const light = {
   multipleSelectCheckboxChecked: "#90a405",
   multipleSelectItemBackgroundHighlight: "#E4F3CA",
   multipleSelectItemColorHighlight: "#1C2532",
+  multipleSelectItemBackgroundHover: "#F1F1F1",
+  multipleSelectItemColorHover: "#1C2532",
 
   // Upload Button
   uploadButtonBgColor: "#DFDFDF",
