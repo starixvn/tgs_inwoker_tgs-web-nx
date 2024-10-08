@@ -15,6 +15,7 @@ const getConfig = () => {
     return mergedConfigs;
   }
   mergedConfigs = config;
+  console.log("window", window);
   if (window) {
     mergedConfigs = window.envConfig ? { ...config, ...window.envConfig } : config;
   }

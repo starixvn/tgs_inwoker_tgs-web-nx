@@ -42,10 +42,10 @@ header / {
 rewrite @try_files {http.matchers.file.relative}
 
  @nocache_js {
-        path /pulibc/c.js
+        path /public/c.js
     }
-    header @nocache_js Cache-Control "no-store, no-cache, must-revalidate, max-age=0"
-    header @nocache_js Pragma "no-cache"
+header @nocache_js Cache-Control "no-store, no-cache, must-revalidate, max-age=0"
+header @nocache_js Pragma "no-cache"
 
 # Enable the static file server.
 file_server
