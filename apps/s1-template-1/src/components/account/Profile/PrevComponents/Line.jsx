@@ -1,16 +1,16 @@
+import {
+  FormControl,
+  ItemContainer,
+  LabelContainer,
+} from "@/components/styled-component/ProfileForms";
+import BottomNote from "@/components/UI/BottomNote";
+import { TextField } from "@/components/UI/TextField";
 import config from "@tgs-web-nx/config";
 import { accountAction, AccountService } from "@tgs-web-nx/core";
 import { i18n } from "@tgs-web-nx/utils";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import BaseProfile from "./BaseProfile";
-import {
-  FormControl,
-  ItemContainer,
-  LabelContainer,
-} from "@/components/styled-component/ProfileForms";
-import { TextField } from "@/components/UI/TextField";
-import BottomNote from "@/components/UI/BottomNote";
 
 class Line extends BaseProfile {
   state = {
@@ -60,7 +60,10 @@ class Line extends BaseProfile {
               });
             }
             this.showLoading(false);
-            this.props.alert("", i18n.t("common.msgSuccessUpdateProfile"));
+            this.props.enqueueSnackbar(i18n.t("common.msgSuccessUpdateProfile"), {
+              variant: "success",
+            });
+            this.props.handleCloseDialog();
           });
         } else {
           this.props.alert("", response.msg);

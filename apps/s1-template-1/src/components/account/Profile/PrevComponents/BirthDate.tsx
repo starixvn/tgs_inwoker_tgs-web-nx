@@ -11,6 +11,7 @@ import { AccountService, useAccountStore } from "@tgs-web-nx/core";
 import { useNotifications } from "@tgs-web-nx/core/features";
 import { i18n } from "@tgs-web-nx/utils";
 import moment from "moment";
+import { useSnackbar } from "notistack";
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 
@@ -23,8 +24,13 @@ const SubmitWrapper = styled.div`
   margin-bottom: 2.4rem;
 `;
 
-const Birthdate = () => {
+type Props = {
+  handleCloseDialog: () => void;
+};
+
+const Birthdate = ({handleCloseDialog}: Props) => {
   const { alert } = useNotifications();
+  const { enqueueSnackbar } = useSnackbar();
   const { account, getAccountProfile } = useAccountStore();
 
   const [birthdate, setBirthdate] = useState<string>(
@@ -69,8 +75,11 @@ const Birthdate = () => {
           setIsConfigured(true);
         }
 
-        alert("", i18n.t("common.msgSuccessUpdateProfile"));
         showLoading(false);
+        enqueueSnackbar(i18n.t("common.msgSuccessUpdateProfile"), {
+          variant: "success",
+        });
+        handleCloseDialog();
       } else {
         //@ts-ignore
         alert("", response.msg);
