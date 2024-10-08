@@ -1,6 +1,10 @@
 FROM node:16.14.2-stretch-slim AS dependencies
 WORKDIR /app
 ENV YARN_CACHE_FOLDER=/root/.yarn
+
+RUN --mount=type=cache,target=$YARN_CACHE_FOLDER \
+     yarn cache dir && yarn cache list
+
 COPY package.json yarn.lock ./
 RUN --mount=type=cache,target=$YARN_CACHE_FOLDER \
      yarn install --frozen-lockfile --verbose
