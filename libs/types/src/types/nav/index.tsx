@@ -4,6 +4,7 @@ export enum NavCardKey {
   DEPOSIT,
   WITHDRAW,
   WAGERING,
+  REWARD,
   TRANSFER,
   REPORT,
   MESSAGE_CENTER,
@@ -15,5 +16,5 @@ export enum NavCardKey {
   PROMOTION,
   INBOX,
   LANGUAGE_SWITCH,
-  AGENT
+  AGENT,
 }
