@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 
 import { GameTypeItem } from "../useHomeGameContext";
 
-const theme = config.theme;
+const theme = import.meta.env.VITE_THEME;
 
 const gameTypeList: GameTypeItem[] = [
   {

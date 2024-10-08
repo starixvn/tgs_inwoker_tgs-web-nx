@@ -3,7 +3,7 @@ WORKDIR /app
 ENV YARN_CACHE_FOLDER=/root/.yarn
 COPY package.json yarn.lock ./
 RUN --mount=type=cache,target=$YARN_CACHE_FOLDER \
-     yarn install --frozen-lockfile --verbose
+     yarn install --frozen-lockfile
 
 FROM node:16.14.2-alpine AS builder
 WORKDIR /app
