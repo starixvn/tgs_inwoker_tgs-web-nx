@@ -1,48 +1,52 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <base href="/" />
 
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"
-    />
-    <link rel="icon" type="image/x-icon" />
+<head>
+  <meta charset="utf-8" />
+  <base href="/" />
 
-    <title id="title"></title>
-    <meta name="description" id="description" content="" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
+  <link rel="icon" type="image/x-icon" />
 
-    <script language="javascript">
-      String.prototype.includes = function (str) {
-        var returnValue = false;
+  <title id="title"></title>
+  <meta name="description" id="description" content="" />
 
-        if (this.indexOf(str) !== -1) {
-          returnValue = true;
-        }
+  <script language="javascript">
+    String.prototype.includes = function (str) {
+      var returnValue = false;
 
-        return returnValue;
-      };
-    </script>
-    <script type="module" src="/c.js"></script>
-  </head>
+      if (this.indexOf(str) !== -1) {
+        returnValue = true;
+      }
 
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
-
-  <link rel="stylesheet" href="/css/animate.min.css" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag() {
-      dataLayer.push(arguments);
-    }
-    gtag("js", new Date());
-
-    gtag("config", "UA-156359717-1");
+      return returnValue;
+    };
   </script>
+  <script>
+    const script = document.createElement("script");
+    script.src = `c.js/?cache_buster=${Date.now()}`;
+    script.type = "module";
+    document.head.appendChild(script);
+  </script>
+</head>
+
+<body>
+  <div id="root"></div>
+  <script type="module" src="/src/main.tsx"></script>
+</body>
+
+<link rel="stylesheet" href="/css/animate.min.css" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag() {
+    dataLayer.push(arguments);
+  }
+  gtag("js", new Date());
+
+  gtag("config", "UA-156359717-1");
+</script>
+
 </html>

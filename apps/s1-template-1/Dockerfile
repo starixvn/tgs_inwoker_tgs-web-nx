@@ -12,7 +12,6 @@ COPY ./libs ./libs
 COPY ./apps/s1-template-1 ./apps/s1-template-1
 COPY ./caddy ./caddy
 COPY .editorconfig tsconfig.base.json .eslintrc.json .eslintignore nx.json .nxignore package.json ./
-RUN cp ./apps/s1-template-1/public/c.js ./apps/s1-template-1/public/c.0_0_1.js
 RUN yarn nx build s1-template-1
 
 FROM caddy:2.1.1-alpine AS runner
