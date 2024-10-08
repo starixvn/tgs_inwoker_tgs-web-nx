@@ -355,6 +355,16 @@ class DepositPrev extends Component {
         payment.alteredpaymentcode.toUpperCase() === "MANUAL") ||
       payment.paymentcode.toUpperCase() === "MANUAL"
     ) {
+      const fileSize = Math.round(this.state.files[0].size / 1024);
+      if (fileSize > 5120) {
+        this.props.alert("", i18n.t("deposit.msgInvalidFileSize"));
+        setTimeout(() => {
+          this.setState({ ...this.state, disabled: false });
+        }, 1000);
+
+        return;
+      }
+
       // handle manual deposit
       if (method.methodcode === "BankTransfer") {
         if (config.features.Deposit_AddCard) {

@@ -738,7 +738,6 @@ class Main extends Component {
             fullWidth
             disabled={(() => {
               const transferlimit = channel.transferlimit;
-              console.log("DEPOSIT AMOUNT ", this.props.amount);
               const parsedAmount = Common
                 .parseThousandSeparatedStringNumberToFloat(this.props.amount);
               return (
