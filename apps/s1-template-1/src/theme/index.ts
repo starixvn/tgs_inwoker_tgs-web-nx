@@ -13,4 +13,4 @@ const getTheme = (theme: string) => {
   }
 };
 
-export const theme = getTheme(config.theme);
+export const theme = getTheme(import.meta.env.VITE_THEME);

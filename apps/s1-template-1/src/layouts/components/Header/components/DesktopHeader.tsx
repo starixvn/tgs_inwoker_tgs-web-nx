@@ -1,5 +1,9 @@
 import { media } from "@/theme/breakpoints";
-import { DESKTOP_HEADER_HEIGHT, MAIN_CONTENT_MAX_WIDTH, MOBILE_HEADER_HEIGHT } from "@/theme/constants";
+import {
+  DESKTOP_HEADER_HEIGHT,
+  MAIN_CONTENT_MAX_WIDTH,
+  MOBILE_HEADER_HEIGHT,
+} from "@/theme/constants";
 import config from "@tgs-web-nx/config";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
 import { useAccountStore, useGeneralStore } from "@tgs-web-nx/core";
@@ -68,7 +72,7 @@ const DesktopHeader = () => {
   const noLoginAccount = account.token !== account.info.token;
   const { handleChangeGameType } = useHomeGameContext();
 
-  const logoUrl = `/assets/images/common/logo-${config.theme}.webp`;
+  const logoUrl = `/assets/images/common/logo-${import.meta.env.VITE_THEME}.webp`;
 
   if (!logoUrl) return null;
   return (

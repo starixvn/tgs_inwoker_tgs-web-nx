@@ -29,7 +29,7 @@ const BrandLogo = (props: React.HTMLProps<HTMLDivElement>) => {
   // using asset site
   // const logoUrl = brand.loadingUrl;
 
-  const logoUrl = `/assets/images/common/logo-${config.theme}.webp`;
+  const logoUrl = `/assets/images/common/logo-${import.meta.env.VITE_THEME}.webp`;
 
   if (!logoUrl) return null;
 
