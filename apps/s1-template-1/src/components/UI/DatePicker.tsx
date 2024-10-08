@@ -168,13 +168,13 @@ export const DatePicker = (props: MobileDatePickerProps<any>) => {
                 "& .MuiPickersCalendarHeader-root": {
                   paddingLeft: 0,
                   "& .MuiPickersCalendarHeader-labelContainer": {
-                    background: "#0A131E", 
+                    background: theme.palette.calendar.calendarSelectedMonthBackground, 
                     padding: ".8rem 1.2rem",
                     fontSize: theme.palette.calendar.calendarFontSize,
                     fontFamily: "inherit",
                     borderRadius: ".8rem",
                     "& .MuiButtonBase-root": {
-                      color: theme.palette.white,
+                      color: theme.palette.calendar.calendarSelectedMonthColor,
                     }
                   }
                 },

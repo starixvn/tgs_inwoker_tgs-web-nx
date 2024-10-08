@@ -118,11 +118,11 @@ export const CustomizeTablePagination = muiStyled(TablePagination)(({ theme }) =
   },
   "& .MuiIconButton-root": {
     padding: ".4rem", 
-    background: "#606E82",
+    background: theme.palette.calendar.nextButtonBackground,
     borderRadius: ".8rem",
-    color: "#fff",
+    color: theme.palette.calendar.nextButtonColor,
     "&.Mui-disabled": {
-      background: "#2E353E",
+      background: theme.palette.calendar.disabledNextButtonBackground,
     }
   },
   "& .MuiTablePagination-actions": {
@@ -211,7 +211,6 @@ export const TagStatusProcessing = styled(TagStatus)`
   color: ${({ theme }) => theme.circleProcessingBackground};
   ${media.sm} {
     background: ${({ theme }) => theme.statusProcessingBackground};
-    color: ${({ theme }) => theme.text};
   }
   &:before {
     background: ${({ theme }) => theme.circleProcessingBackground};
@@ -223,7 +222,6 @@ export const TagStatusPending = styled(TagStatus)`
   color: ${({ theme }) => theme.circlePendingBackground};
   ${media.sm} {
     background: ${({ theme }) => theme.statusPendingBackground};
-    color: ${({ theme }) => theme.text};
   }  
   &:before {
     background: ${({ theme }) => theme.circlePendingBackground};
@@ -234,7 +232,6 @@ export const TagStatusApproved = styled(TagStatus)`
   color: ${({ theme }) => theme.circleApprovedBackground};
   ${media.sm} { 
     background: ${({ theme }) => theme.statusApprovedBackground};
-    color: ${({ theme }) => theme.text};
   }
   
   &:before {
@@ -246,7 +243,6 @@ export const TagStatusRejected = styled(TagStatus)`
   color: ${({ theme }) => theme.circleRejectBackground};
  ${media.sm} {
   background: ${({ theme }) => theme.statusRejectBackground};
-  color: ${({ theme }) => theme.text};
  }
   
   &:before {
@@ -258,7 +254,6 @@ export const TagStatusPaying = styled(TagStatus)`
   color: ${({ theme }) => theme.circlePayingBackground};
   ${media.sm} { 
     background: ${({ theme }) => theme.statusPayingBackground};
-    color: ${({ theme }) => theme.text};
   }
   
   &:before {
@@ -270,7 +265,6 @@ export const TagStatusPaid = styled(TagStatus)`
   color: ${({ theme }) => theme.circlePaidBackground};
   ${media.sm} { 
     background: ${({ theme }) => theme.statusPaidBackground};
-    color: ${({ theme }) => theme.text};
   }
   
   &:before {

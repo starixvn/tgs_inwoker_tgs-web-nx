@@ -327,6 +327,8 @@ export const dark = {
   calendarFontSize: "1.6rem",
   calendarBoxshadow: "0px 0px 8px 0px rgba(0, 0, 0, 0.40)",
   calendarFontSizeMobile: "1.4rem",
+  calendarSelectedMonthBackground: "#0A131E",
+  calendarSelectedMonthColor: "#fff",
 
   // Date Picker
   datePickerBackground: "#1C2532",

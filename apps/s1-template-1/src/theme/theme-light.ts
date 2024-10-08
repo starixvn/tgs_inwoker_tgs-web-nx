@@ -180,7 +180,7 @@ export const light = {
 
   // Tab
   tabBackground: "radial-gradient(60.48% 104.17% at 52.02% 9.72%, #CCDAFF 0%, #90BDFF 100%)",
-  tabActiveBackground: "radial-gradient(100% 100% at 50% 0%, #DCFFC0 0%, #B5F575 100%)",
+  tabActiveBackground: "radial-gradient(100% 100% at 50% 0%, #CBE41D 0%, #8D9F0F 100%)",
   borderTabActive: "#82F627",
   borderTab: "transparent",
   tabTextColor: "#1C2532",
@@ -318,24 +318,26 @@ export const light = {
   popupCloseButtonHoverBgColor: "#B3B0B0",
 
   // Calendar
-  calendarBackground: "#1C2532",
+  calendarBackground: "#FFF",
   calendarBorderRadius: "1.2rem",
-  calendarTextColor: "#fff",
+  calendarTextColor: "#1C2532",
   calendarTextDisabledColor: "#888",
   calendarHeaderColor: "#55657E",
   calendarHighlight: "#E2FE26",
-  calendarHighlightBackground: "#374000",
+  calendarHighlightBackground: "#A8B742",
   calendarFontSize: "1.6rem",
   calendarBoxshadow: "0px 0px 8px 0px rgba(0, 0, 0, 0.40)",
   calendarFontSizeMobile: "1.4rem",
+  calendarSelectedMonthBackground: "#ECECEC",
+  calendarSelectedMonthColor: "#1C2532",
 
   // Date Picker
   datePickerBackground: "#ECECEC",
   datePickerColor: "#1C2532",
   iconCalendarBgColor: "#DEDEDE",
   iconCalendarColor: "#1C2532",
-  buttonRangeTimeBgColor: "#B5CDFF",
-  buttonRangeTimeColor: "#1C2532",
+  buttonRangeTimeBgColor: "#DAE6FF",
+  buttonRangeTimeColor: "#294785",
   buttonRangeTimeSelectedBgColor: "#95A90B",
   buttonRangeTimeSelectedColor: "#fff",
   titleFilter: "#1C2532",
@@ -397,7 +399,7 @@ export const light = {
   headerDialogTextColor: "#1C2532",
 
   // Account Info Page
-  accountInfoBackgroundColor: "#EAF7FD",
+  accountInfoBackgroundColor: "#F6F6F6",
   playerNameColor: "#1C2532",
   walletInfoColor: "#1C2532",
   borderAvartar: "rgba(0, 0, 0, 0.20)",

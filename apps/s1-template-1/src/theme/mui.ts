@@ -102,6 +102,8 @@ declare module "@mui/material/styles/createPalette" {
       nextButtonColor: string;
       disabledNextButtonBackground: string;
       calendarFontSizeMobile: string;
+      calendarSelectedMonthBackground: string;
+      calendarSelectedMonthColor: string;
     };
 
     uploadButton: {
@@ -229,6 +231,8 @@ const muiTheme = createTheme({
       nextButtonColor: theme.slideNextButtonColor,
       disabledNextButtonBackground: theme.disabledSlideNextButtonBackground,
       calendarFontSizeMobile: theme.calendarFontSizeMobile,
+      calendarSelectedMonthBackground: theme.calendarSelectedMonthBackground,
+      calendarSelectedMonthColor: theme.calendarSelectedMonthColor,
     },
 
     uploadButton: {
