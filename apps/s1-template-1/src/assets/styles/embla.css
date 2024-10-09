@@ -15,6 +15,7 @@
   touch-action: pan-y pinch-zoom;
   gap: var(--slide-spacing);
   overflow: initial;
+  will-change: transform;
 }
 
 .embla__container.two-rows {
@@ -32,7 +33,6 @@
 }
 
 .embla__slide {
-  will-change: transform;
   transform: translate3d(0, 0, 0);
   flex: 0 0 var(--slide-size);
   min-width: 0;
