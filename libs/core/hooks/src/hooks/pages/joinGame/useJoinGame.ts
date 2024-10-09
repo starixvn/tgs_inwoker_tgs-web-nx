@@ -7,26 +7,30 @@ export function useJoinGame() {
     const [isLoading, setIsLoading] = useState(false);
     const { goToLogin } = useAuth();
 
-    const handleJoinGame = async (gameId: number, gpCode: string) => {
-        setIsLoading(true);
-        const joinGameRes = await GameService.JoinGame(gameId, gpCode);
+    // const handleJoinGame = async (gameId: number, gpCode: string) => {
+    //     setIsLoading(true);
+    //     const joinGameRes = await GameService.JoinGame(gameId, gpCode);
 
-        if (joinGameRes.code === StatusCodeEnum.Unauthenticated) {
-            goToLogin();
-            setIsLoading(false);
-            return;
-        }
+    //     if (joinGameRes.code === StatusCodeEnum.Unauthenticated) {
+    //         goToLogin();
+    //         setIsLoading(false);
+    //         return;
+    //     }
 
-        setTimeout(() => {
-            if (joinGameRes.IsSuccess) {
-                window.open(joinGameRes.data.url, `${gameId}-${gpCode}`)?.focus();
-            } else {
-                window.open(window.location.origin + "/maintenance?isGameMaintenance=true", "maintenance-game")?.focus();
-            }
-        }, 1)
+    //     setTimeout(() => {
+    //         if (joinGameRes.IsSuccess) {
+    //             window.open(joinGameRes.data.url, `${gameId}-${gpCode}`)?.focus();
+    //         } else {
+    //             window.open(window.location.origin + "/maintenance?isGameMaintenance=true", "maintenance-game")?.focus();
+    //         }
+    //     }, 1)
 
-        setIsLoading(false);
-    };
+    //     setIsLoading(false);
+    // };
+
+    const handleJoinGame = (gameId: number, gpCode: string) => {
+        window.open(window.location.origin + `/joingame/${gameId}/${gpCode}`, `${gameId}-${gpCode}`);
+    }
 
     return {
         isLoading,
