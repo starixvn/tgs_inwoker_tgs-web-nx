@@ -128,7 +128,7 @@ class NameVerify extends BaseProfile {
 
     const nameRegex = new RegExp("^.{1,256}$");
     if (!memberName.match(nameRegex)) {
-      this.props.enqueueSnackbar(i18n.t("common.msgInvalidName"), {
+      this.props.enqueueSnackbar(i18n.t("common.msgMaxLengthName"), {
         variant: "error",
       });
       return;
