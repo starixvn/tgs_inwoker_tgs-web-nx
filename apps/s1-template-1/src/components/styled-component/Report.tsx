@@ -117,12 +117,18 @@ export const CustomizeTablePagination = muiStyled(TablePagination)(({ theme }) =
     }
   },
   "& .MuiIconButton-root": {
-    padding: ".4rem", 
+    padding: ".2rem", 
     background: theme.palette.calendar.nextButtonBackground,
     borderRadius: ".8rem",
     color: theme.palette.calendar.nextButtonColor,
+    border: theme.palette.calendar.slideNextButtonBorder,
+    "&:hover": {
+      background: theme.palette.calendar.slideNextButtonBackgroundHover,
+      color: theme.palette.calendar.slideNextButtonColorHover,
+    },
     "&.Mui-disabled": {
       background: theme.palette.calendar.disabledNextButtonBackground,
+      color: theme.palette.calendar.disabledSlideNextButtonColor,
     }
   },
   "& .MuiTablePagination-actions": {

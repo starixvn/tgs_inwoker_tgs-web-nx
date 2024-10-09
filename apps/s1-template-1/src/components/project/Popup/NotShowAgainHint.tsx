@@ -8,7 +8,7 @@ const NotShowAgainHintContainer = styled.div`
   font-size: 1.2rem;
   display: flex;
   align-items: center;
-  color: ${({ theme }) => theme.gray60};
+  color: ${({ theme }) => theme.text};
   margin: 18px 0;
   position: relative;
   left: -1.2rem;
