@@ -3,7 +3,7 @@ import { GreenGradientButton, OrangeGradientButton } from "@/components/UI/Butto
 import { ProfileItem } from "@tgs-web-nx/core/hooks";
 import { i18n } from "@tgs-web-nx/utils";
 import styled from "styled-components";
-import { FormWrapperExtend, ItemContainer, ItemInfo, LabelStatus, ProfileItemContainer } from "./ProfileRowInMobile";
+import { FormWrapperExtend, ItemContainer, ItemInfo, LabelStatus, ProfileItemContainer, StatusName } from "./ProfileRowInMobile";
 
 const ItemInfoDesktop = styled(ItemInfo)`
   font-size: 1.4rem;
@@ -42,7 +42,7 @@ const ProfileRowInDesktop = ({ profileItem, handleClick }: Props) => {
           </LabelContainer>
           <FormWrapperExtend style={{gap: "2.4rem", width: "calc(100% - 18rem)"}}>
             <ItemInfoDesktop isVerified={isVerified || false}>
-              <div>{status}</div>
+              <StatusName>{status}</StatusName>
               {(!!currentFormStatus) && <LabelStatus status={currentFormStatus}>{i18n.t("verified." + currentFormStatus)}</LabelStatus>}
             </ItemInfoDesktop>
             {isVerified ? 

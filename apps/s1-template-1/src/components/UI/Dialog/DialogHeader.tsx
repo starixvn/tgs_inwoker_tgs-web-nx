@@ -36,7 +36,7 @@ export const DialogTitle = styled.div`
   color: ${({ theme }) => theme.headerDialogTextColor}
 `;
 
-const IconWrapper = styled.div`
+export const IconWrapper = styled.div`
   background: ${({ theme }) => theme.backIconHeaderDialogBgColor};
   border: 1px solid ${({ theme }) => theme.backIconHeaderDialogBoderColor};
   box-shadow: ${({ theme }) => theme.backIconHeaderDialogBoxshadow};

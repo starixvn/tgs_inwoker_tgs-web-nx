@@ -1,13 +1,13 @@
-import Icon from "@/components/project/Icon";
 import {
   AccountInfoIcon,
+  ArrowLeftIcon,
   DepositIcon,
   HistoryIcon,
   InboxIcon,
   TransactionIcon,
   WithdrawIcon,
 } from "@/components/UI/CustomizeIcon";
-import { DialogTitle } from "@/components/UI/Dialog/DialogHeader";
+import { DialogTitle, IconWrapper } from "@/components/UI/Dialog/DialogHeader";
 import { theme } from "@/theme";
 import { NavCardKey } from "@tgs-web-nx/types";
 import { i18n } from "@tgs-web-nx/utils";
@@ -159,7 +159,7 @@ const MenuTabs = () => {
           history.push("/");
         }}
       >
-        <Icon iconUrl="/assets/images/common/icon-back.svg" width={"32px"} height={"32px"} />
+        <IconWrapper><ArrowLeftIcon sx={{color: `${theme.backIconHeaderDialogColor}`, fontSize: "2rem", position: "relative", top: "5px", left: "6px"}}/></IconWrapper>
         <DialogTitle>{i18n.t("common.home")}</DialogTitle>
       </IconContainer>
       <TabContainer>

@@ -6,13 +6,13 @@ const StyledTextArea = muiStyled(MuiTextField)(({ theme }) => ({
   border: `1px solid ${theme.palette.form.borderColor}`,
   textarea: {
     padding: "10px",
-    color: theme.palette.text.primary,
+    color: theme.palette.form.textColor,
     border: "none",
     height: "100% !important",
     minHeight: "100px",
 
     "&:-webkit-autofill": {
-      WebkitTextFillColor: `${theme.palette.text.primary} !important`,
+      WebkitTextFillColor: `${theme.palette.form.textColor} !important`,
     },
   },
   "& .MuiInputBase-root": {
@@ -21,14 +21,14 @@ const StyledTextArea = muiStyled(MuiTextField)(({ theme }) => ({
     fontSize: "1.4rem",
   },
   label: {
-    color: theme.palette.text.primary,
+    color: theme.palette.form.textColor,
     alignItems: "center",
     fontWeight: 400,
     fontSize: "1.4rem",
   },
 
   "& textarea::placeholder": {
-    color: `${theme.palette.form.textColor}`,
+    color: `${theme.palette.form.placeHolderTextColor}`,
     opacity: 1,
     fontWeight: 700,
     fontSize: "1.4rem",

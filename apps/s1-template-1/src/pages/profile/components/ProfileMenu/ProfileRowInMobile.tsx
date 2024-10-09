@@ -46,6 +46,12 @@ export const FormWrapperExtend = styled.div`
   justify-content: flex-end;
   align-items: center;
   gap: 1rem;
+  justify-self: flex-end;
+  ${media.sm} {
+    display: grid;
+    grid-template-columns: 1fr 11.6rem;
+    grid-gap-column: 1rem;
+  }
 `;
 
 type StatusInfo = {
@@ -74,14 +80,14 @@ export const ItemInfo = styled.div<StatusInfo>`
 export const ItemContainer = styled.div`
   display: flex;
   align-items: center;
-  justify-content: space-between;
   border-bottom: 1px solid #2A343F;
   margin-bottom: 1.2rem;
   padding: .6rem 0;
   width: 100%;
   marginBottom: 1.2rem;
-  display: flex;
   min-height: 4.8rem;
+  justify-content: space-between;
+  gap: 1.2rem;
 `;
 
 const LabelStatusBase = styled.div`
@@ -92,6 +98,19 @@ const LabelStatusBase = styled.div`
    line-height: 2rem;
    letter-spacing: 0.26px;
 `;
+
+export const ProfileLabelContainer = styled(LabelContainer)`
+   float: unset;
+   justify-self: start;
+   margin-bottom: 0;
+   white-space: nowrap;
+`;
+
+export const StatusName = styled.div`
+  word-break: break-word;
+
+`;
+
  
 type LabelStatusProps = {
   status: string,
@@ -153,10 +172,10 @@ const ProfileRowInMobile = ({ profileItem, handleClick }: ProfileItemProps) => {
         handleClick(profileItem);
       }}>
         <ItemContainer >
-          <LabelContainer>{label}</LabelContainer>
+          <ProfileLabelContainer>{label}</ProfileLabelContainer>
           <FormWrapperExtend>
             <ItemInfo isVerified={profileItem.isVerified || false}>
-            <div>{profileItem.status}</div>
+            <StatusName>{profileItem.status}</StatusName>
             {(!!currentFormStatus) && <LabelStatus status={currentFormStatus}>{i18n.t("verified." + currentFormStatus)}</LabelStatus>}
             </ItemInfo>
             {/* <FormControl variant="outlined" >
