@@ -701,7 +701,7 @@ class Main extends Component {
                         accept="image/jpg, image/jpeg, image/png, image/tiff"
                         style={{ display: "none" }}
                       />
-                      <UploadFileTag>
+                      <UploadFileTag haveFile={this.props.files ? true : false}>
                         {this.props.files ? this.props.files[0].name : i18n.t("common.uploadFile")}
                       </UploadFileTag>
                   </FormControl>

@@ -1,3 +1,4 @@
+import { theme } from "@/theme";
 import { media } from "@/theme/breakpoints";
 import { Button as MuiButton, FormControl as MuiFormControl, styled as muiStyled } from "@mui/material";
 import styled from "styled-components";
@@ -111,15 +112,19 @@ export const UploadFileButton = muiStyled(MuiButton)(({ theme }) => ({
   top: ".8rem",
   borderRadius: ".8rem",
   "&:hover": {
-    border: "none",
-    backgroundColor: `${theme.palette.uploadButton.backgroundColor}`,
+    border: `1px solid ${theme.palette.uploadButton.borderColor}`,
+    backgroundColor: `${theme.palette.uploadButton.hoverBackgroundColor}`,
   },
 })) as typeof MuiButton;
 
-export const UploadFileTag = styled.span`
+type UploadFileTagProps = {
+  haveFile: boolean,
+  theme: typeof theme
+}
+export const UploadFileTag = styled.span<UploadFileTagProps>`
   width: 100%;
   font-size: 1.4rem;
-  color: ${({ theme }) => theme.formInputPlaceHolderColor};
+  color: ${({ haveFile, theme }) => haveFile ? theme.text : theme.formInputPlaceHolderColor};
 
   display: flex;
   align-items: center;

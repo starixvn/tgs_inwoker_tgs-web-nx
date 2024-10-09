@@ -108,6 +108,7 @@ declare module "@mui/material/styles/createPalette" {
 
     uploadButton: {
       backgroundColor: string;
+      hoverBackgroundColor: string;
       borderColor: string;
     };
   }
@@ -238,6 +239,7 @@ const muiTheme = createTheme({
     uploadButton: {
       backgroundColor: theme.uploadButtonBgColor,
       borderColor: theme.uploadButtonBorderColor,
+      hoverBackgroundColor: theme.uploadButtonHoverBgColor,
     },
   },
   typography: {

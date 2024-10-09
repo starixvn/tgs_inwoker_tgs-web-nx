@@ -389,6 +389,7 @@ export const dark = {
   // Upload Button
   uploadButtonBgColor: "#272E37",
   uploadButtonBorderColor: "#272E37",
+  uploadButtonHoverBgColor: "#606e82",
 
   //Back Button for Header Dialog
   backIconHeaderDialogColor: "#ffffff",

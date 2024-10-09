@@ -79,7 +79,7 @@ class Default extends BaseProfile {
                 accept=".jpg,.jpeg,.png,.tiff"
                 style={{ display: "none" }}
               />
-              <UploadFileTag>
+              <UploadFileTag haveFile={this.props.icUpload ? true : false}>
                 {this.props.icUpload ? this.props.icUpload[0].name : i18n.t("common.uploadFile")}
               </UploadFileTag>
             </FormControl>
