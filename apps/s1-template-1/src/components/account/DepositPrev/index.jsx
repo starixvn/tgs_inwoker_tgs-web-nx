@@ -388,7 +388,7 @@ class DepositPrev extends Component {
             channel.id,
             this.state.depositPromotion,
             null,
-            config.features.Deposit_Withdrawal_PlayerNote ? this.state.playerNote : "",
+            undefined
           );
         }
       }

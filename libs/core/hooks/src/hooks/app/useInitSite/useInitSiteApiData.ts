@@ -1,7 +1,4 @@
-import { useEffect, useRef, useState } from "react";
-import { useHistory } from "react-router-dom";
 import config from "@tgs-web-nx/config";
-import { BlowFishEncryption, ErrorSwitcher, i18n } from "@tgs-web-nx/utils";
 import {
   GeneralService,
   useAccountStore,
@@ -12,6 +9,9 @@ import {
   useWalletStore,
 } from "@tgs-web-nx/core";
 import { useAuth, usePromotionCodeV2 } from "@tgs-web-nx/core/features";
+import { BlowFishEncryption, ErrorSwitcher, i18n } from "@tgs-web-nx/utils";
+import { useEffect, useRef, useState } from "react";
+import { useHistory } from "react-router-dom";
 
 export function useInitSiteApiData() {
   const {
@@ -158,14 +158,14 @@ export function useInitSiteApiData() {
       return;
     }
 
-    getBalanceList();
+    // getBalanceList();
     getMessages(i18n.language, 1, 99);
     //getPromotionRouletteCount();
   };
 
   const onFocus = () => {
     if (!localStorage.getItem("token0")) return;
-    getBalanceList();
+    // getBalanceList();
   };
 
   const isMounted = useRef(false);
