@@ -5,14 +5,6 @@ import styled from "styled-components";
 
 import { ErrorIcon, SuccessIcon, WarningIcon } from "./CustomizeIcon";
 
-const Dismiss = styled.a`
-  margin-right: 12px;
-  font-weight: bold;
-  &:hover {
-    cursor: pointer;
-  }
-`;
-
 const Icon = styled.img`
   width: 24px;
   margin-right: 12px;
@@ -21,22 +13,26 @@ const Icon = styled.img`
 const CustomizedSnackbarProvider = styled(SnackbarProvider)`
   &.notistack-MuiContent {
     border-radius: 1.2rem;
-    background-color: ${({ theme }) => theme.toastBackgroundColor};
+    
   }
   &.notistack-MuiContent-error {
     border: 2px solid ${({ theme }) => theme.toastErrorBorderColor};
+    background-color: ${({ theme }) => theme.toastErrorBackgroundColor};
   }
   &.notistack-MuiContent-success {
     border: 2px solid ${({ theme }) => theme.toastSuccessBorderColor};
+    background-color: ${({ theme }) => theme.toastSuccessBackgroundColor};
   }
   &.notistack-MuiContent-warning {
     border: 2px solid ${({ theme }) => theme.toastWarningBorderColor};
+    background-color: ${({ theme }) => theme.toastWarningBackgroundColor};
   }
 
   #notistack-snackbar {
     font-size: ${({ theme }) => theme.toastFontzise};
     font-weight: 500;
     gap: 0.8rem;
+    color: ${({ theme }) => theme.toastTextColor};
   }
 `;
 

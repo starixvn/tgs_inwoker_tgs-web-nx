@@ -303,9 +303,11 @@ export const dark = {
 
   // Toast
   toastErrorBorderColor: "#F90B44",
+  toastErrorBackgroundColor: "#212A39",
   toastSuccessBorderColor: "#E2FE26",
+  toastSuccessBackgroundColor: "#212A39",
   toastWarningBorderColor: "#FFC700",
-  toastBackgroundColor: "#212A39",
+  toastWarningBackgroundColor: "#212A39",
   toastTextColor: "#878EA1",
   toastFontzise: "1.3rem",
 

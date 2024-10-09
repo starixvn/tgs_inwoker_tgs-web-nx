@@ -304,10 +304,12 @@ export const light = {
 
   // Toast
   toastErrorBorderColor: "#F90B44",
-  toastSuccessBorderColor: "#E2FE26",
+  toastErrorBackgroundColor: "#FEE",
+  toastSuccessBorderColor: "#A9D300",
+  toastSuccessBackgroundColor: "#EFFFEB",
   toastWarningBorderColor: "#FFC700",
-  toastBackgroundColor: "#212A39",
-  toastTextColor: "#878EA1",
+  toastWarningBackgroundColor: "#FFF5D2",
+  toastTextColor: "#1C2532",
   toastFontzise: "1.3rem",
 
   // Popup Alert
@@ -389,7 +391,7 @@ export const light = {
 
   // Upload Button
   uploadButtonBgColor: "#DFDFDF",
-  uploadButtonHoverBgColor: "#606e82",
+  uploadButtonHoverBgColor: "#CACACA",
   uploadButtonBorderColor: "#CACACA",
 
   //Back Button for Header Dialog
